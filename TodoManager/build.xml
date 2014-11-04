@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="BuildTodoManager" basedir="." default="echoInfo" xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
+
+	
+	<!-- property name="src.dir"			value="./src"/ -->
+	<property name="src.lib.dir"		value="./lib"/>
+	
+	<!-- property name="target.dir"			value="./build"/ -->
+	
+	<property name="main.class"			value="main.Start"/>
+	
+	
+	<property name="target.temp.dir"			value="${target.dir}/temp"/>
+	<property name="target.testresults.dir"		value="${target.dir}/testresults"/>
+	<property name="target.delivery.dir"		value="${target.dir}/delivery"/>
+	<property name="target.build.dir"			value="${target.dir}/build"/>
+	
+	<property name="target.jar.file"			value="${target.build.dir}/TodoManager.jar"/>
+	<property name="target.zip.file"			value="${target.delivery.dir}/TodoManager.zip"/>
+	
+	
+
+	<path id="classpath">
+		<fileset dir="${src.lib.dir}" includes="**/*.jar"/>
+	</path>
+			
+
+	<path id="targetclasspath">
+		<fileset dir="${target.build.dir}/lib" includes="**/*.jar"/>
+	</path>
+
+	
+
+	<target name="echoInfo">
+		<echo>	
+					
+			src.dir                        = ${src.dir}
+			target.dir                     = ${target.dir}
+			-----------------------------------------------------------------------
+			target.temp.dir                = ${target.temp.dir}
+			target.testresults.dir         = ${target.testresults.dir}
+			target.delivery.dir            = ${target.delivery.dir}
+			target.build.dir               = ${target.build.dir}
+			
+			target.jar.file                = ${target.jar.file}
+			target.zip.file                = ${target.zip.file}
+			-----------------------------------------------------------------------
+			src.lib.dir                    = ${src.lib.dir}
+			
+		</echo>
+	</target>
+		
+	
+	<target name="cleanup">
+			<delete dir="${target.dir}"/>
+	</target>
+		
+		
+	<target name="executeCheckStyle" depends="echoInfo">
+	
+		<cs:checkstyle config="./testFiles/sun_checks.xml" failOnViolation="false">
+			
+			<formatter type="xml" tofile="${target.testresults.dir}/checkstyleReport.xml"/>
+	
+			<classpath>
+				<path refid="classpath"/>
+				<path location="${src.lib.dir}"/>
+			</classpath>
+			
+			<fileset dir="${src.dir}">
+							<exclude name="**/*Test*.java"/>
+							<include name="**/*.java"/>
+						</fileset>
+						
+			
+			
+			<!--fileset dir="${target.temp.dir}">
+				<exclude name="**/*Test*.class"/>
+				<include name="**/*.class"/>
+			</fileset-->
+			
+		</cs:checkstyle>
+		
+	</target>
+	
+	
+	<target name="executeUnitTests" depends="echoInfo">
+		
+		<junit printsummary="yes" fork="no" haltonfailure="true">
+		
+			<formatter type="xml"/>
+
+			<classpath>
+				<path refid="classpath"/>
+				<path location="${target.temp.dir}"/>
+			</classpath>
+			
+			<batchtest todir="${target.testresults.dir}">
+				<fileset dir="${target.temp.dir}">
+					<include name="**/*Test*.class"/>
+				</fileset>
+			</batchtest>
+			
+		</junit>
+	</target>
+
+	
+	
+	<target name="prepare" depends="cleanup">	
+
+		<mkdir dir="${target.dir}"/>
+		<mkdir dir="${target.temp.dir}"/>
+		<mkdir dir="${target.testresults.dir}"/>
+		<mkdir dir="${target.delivery.dir}"/>
+		<mkdir dir="${target.build.dir}"/>
+		
+	</target>
+	
+
+	<!-- Kompilieren und im Temp-Vz ablegen -->
+	<target name="compile" depends="prepare">
+		<javac srcdir="${src.dir}" 
+			   destdir="${target.temp.dir}"
+			   classpathref="classpath"/>
+	</target>
+
+	
+	
+	<target name="createjar">
+
+		<copy todir="${target.build.dir}/lib">
+			<fileset dir="${src.lib.dir}"/>			
+		</copy>
+		
+		<delete dir="${target.build.dir}/test"/>
+		
+		<manifestclasspath property="jar.classpath" jarfile="${target.jar.file}">
+			<classpath refid="targetclasspath"></classpath>
+		</manifestclasspath>
+		
+		<jar destfile="${target.jar.file}" basedir="${target.temp.dir}">
+			
+			<manifest>
+				<attribute name="Main-Class" value="${main.class}"/>
+				<attribute name="Class-Path" value="${jar.classpath}"/>
+			</manifest>
+		</jar>
+		
+		<!--delete dir="${target.temp.dir}"/-->
+	</target>
+	
+	
+	
+	<target name="deliver">
+		
+		<mkdir dir="${target.build.dir}/attachments"/>
+		
+		<copy todir="${target.build.dir}/gfx">
+			<fileset dir="./gfx"/>			
+		</copy>
+		<copy todir="${target.build.dir}/config">
+			<fileset dir="./config"/>			
+		</copy>
+		
+		
+		<zip destfile="${target.zip.file}">
+			<fileset dir="${target.build.dir}" />
+		</zip>	
+	</target>
+
+
+</project>

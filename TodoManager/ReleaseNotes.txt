@@ -1,0 +1,598 @@
+
+
+Release 1.7   ( Content [ ] | BugFix [ ] | Gui [ ] | Test[ ] Struct [X] ) >>13033 LOC<< | 2: >>12764 LOC<<
+Finalisierung und Test) |  
+----------------------------------------------------------------------------------------------------------------------------
+  [BugFix]	Das Verzeichnis "attachments" wird nun automatisch angelegt wenn es nicht existiert
+  [BugFix]	TodoListen werden nun im korrekten Encoding gelesen und geschrieben (UTF-8)
+  [Gui]		Beim internen speichern von Attachments wird nun eine Fehlermeldung ausgegeben und das Verzeichnis wird nur verlinkt.
+  [Struct]	Exceptions können nun inklusive Stacktrace geloggt werden
+  [Struct]	Das gesamte Error-Logging wurde auf das neue Verfahren umgestellt
+  [Gui]		Das Farbfenster für die Kategorien-Farbe hat nun einen anderen Cursor
+1 [Content]	Es gibt nun einen Icon-Button zum direkten öffnen des temporären Attachment-Verzeichnisses + 2 neue Icons
+1 [Content]	Die Todo-Listen können nun zur Textsuche zusätzlich auch nach Kategorie gefiltert werden
+1 [Content]	Es gibt in der High-Priority-Liste nun eine Anzeige, wie lange ein Todo nicht verändert wurde
+1 [Content]	Der Filter der Todo-Liste wurde überarbeitet, nun kann aus dem Stand nach Kategorien gefiltert werden
+2 [Gui]		Die derzeit aktive Box auf der Startseite hat nun einen Schatten, damit zu sehen ist, dass sie selektiert ist
+2 [Content]	Die High-Prio List zeigt bei selektierter Liste nun nur noch deren Items an
+2 [Content]	Es gibt für Attachments ein Context-Menü, um das Root-Verzeichnis bzw. das temporäre Attachment-Verzeichnis geöffnet wird
+2 [BugFix]	Das Time-Panel-Menü wird nun beim Scrollen korrekt positioniert
+2 [Gui]		Das Dunkelgrün für "existierende Attachments" wurde verdunkelt damit es besser lesbar ist
+2 [Gui]		Das Alter jedes Todos (Zeit ohne Änderung) wird nun in der Detail-Ansicht angezeigt
+2 [Gui]		Es wurden eine Reihe von Tool-Tips in der Detailansicht hinzugefügt
+2 [BugFix]	Bei gesperrten Todo-Listen können keine Attachments mehr hinzugefügt werden
+2 [Gui]		Zu lange Namen von Todo-Listen werden im Zeitstrahl nun gekürzt
+2 [Struct]	Das Time-Panel wird für neue Funktionen vorbereitet, es werden diverse Basismethoden angelegt
+2 [Struct]	Kleine logische Umstrukturierung der Utils Klasse
+2 [Struct]	Alle Imports wurden neu organisiert um die Klassen übersichtlicher zu gestalten
+2 [Struct]	Das Time-Panel wurde an einigen Stellen überarbeitet und ist nun etwas performanter und klarer in der Verarbeitung
+2 [Struct]	Einige Panel- und Component-Klassen wurden verschoben um die Packet-Struktur klarer zu gestalten
+2 [Struct]	Es wurden einige Kommentare überarbeitet bzw. hinzugefügt
+2 [Struct]	Die Klassen-Struktur wurde stark geändert, es wurden zahlreiche neue Packages hinzugefügt
+2 [Gui]		Im Time-Line sind die Balken nun nach Start-Datum sortiert
+2 [Struct]	Das Time-Panel wurde sehr stark umstrukturiert und viel modularer gestaltet
+2 [BugFix]	Der Excel-Export wurde korrigiert und funktioniert ohne existierende Datei
+2 [BugFix]	Der Excel-Export kann nun mehrfach hintereinander ohne Fehler auf eine Datei durchgeführt werden
+2 [Struct]	Das TimePanel wurde etwas überarbeitet bzgl. Code Quality und Performance
+2 [Struct]	Das High-Prio-Panel wurde etwas überarbeitet bzgl. Code Quality und Performance
+2 [Struct]	Das temporäre Attachment-Verzeichnis wird nun anders geleert
+2 [Struct]	An vielen Stellen wurden Änderungen und Optimierungen am Code durchgeführt
+3 [BugFix]	Im Time-Panel werden nun die Namen der gezeichneten Listen korrekt gezeigt
+3 [BugFix]	Es werden im Time-Panel nun nur die relevanten Listen eingezeichnet
+3 [BugFix]	Die Berechnung des Menüs im Time-Panel wurde überarbeitet
+3 [Gui]		Im Time-Panel werden geschlossene Listen nun mit einem Schloss-Icon dargestellt
+3 [Content]	Es ist nun konfigurierbar via File, ob das Time-Panel beim Start in der Wochen- oder Tagesansicht steht
+3 [Gui]		Das Context-Menü der übersicht wurde neu sortiert und mit Tool-Tips versehen
+3 [Gui]		Neue Listen in der übersicht können nun auch über das Context-Menü hinzugefügt werden
+3 [Gui]		Die Benutzer-Hinweise zeigen nun auch eine Grafik, wenn eine einzige, leere Liste existiert
+3 [Test]	Der Filter der Todo-Liste wurde erfolgreich auf Ausschluss getestet
+3 [BugFix]	Im Priority-Panel wird der Prio-Strahl nun wieder korrekt gezeichnet
+3 [Struct]	Es wurde die Annotation @OverriddenByConfig eingeführt, um Werte zu kennzeichnen, die überschrieben werden
+3 [Gui]		Gibt es in einer Todo-Liste nur Items im Status "Wait", so wird dies durch eine Grafik in der Box angezeigt
+3 [Content]	Es ist nun konfigurierbar via File, ob beim Startup die High-Prio bzw. die Summary angezeigt werden
+3 [Gui]		Das Icon für Listen nur mit Items im Status "Wait" wurde überarbeitet
+3 [Gui]		Der Benutzer-Hinweis zum Öffnen einer Liste wurde fertiggestellt
+4 [BugFix]	Bei der Anzeige der "Sleeping" Grafik werden nun Elemente im Status "DONE" ignoriert
+4 [Struct]	Das Encoding des gesamten Projekts wurde von CP1525 auf UTF-8 umgestellt
+4 [BugFix]	Die maximale Länge des Logs wird nun korrekt eingehalten, nicht mit +1 Nachrichten
+4 [BugFix]	Es wurde ein schwerer Berechnungsfehler in der Berechnung des Montags einer Woche behoben, der jedoch keine Auswirkung hatte
+4 [BugFix]	Das Time-Panel sortiert nun untereinander nach Start-Datum und Reminder-Datum falls kein Startdatum existiert
+4 [BugFix]	Reminder-Icons im TimePane werden nun korrekt links hinausgescrollt
+4 [Test]	Die JUnit Test-Basis wurde erweitert
+4 [Gui]     Die Fehlermeldung wenn Dateien mit ungültiger Endung geladen werden, wurde präzisiert
+4 [Gui]     Kann eine Datei nicht geöffnet werden, so wird nun ein Dialog mit entsprechender Fehlermeldung angezeigt
+
+
+
+Release 1.6   ( Content [X] | BugFix [X] | Gui [X] | Test[ ] Struct [X] )
+Feature Release (Gui-Package, insbesondere für die übersicht) | 1.6a 17.09.2013 (Hotfix) | 1.6b -kein Release- | 1.6c -kein Release- | 1.6d 20.09.2013
+----------------------------------------------------------------------------------------------------------------------------
+a [Gui]		Das Time-Panel kann nun nach Oben durch Drag&Drop in der Größe verändert werden
+a [Gui]		Die Summary-Grafik ist nun etwas größer und nutzt den verfügbaren Platz besser aus
+a [BugFix]	Die Summary-Grafik zeichnet nun für alle Listen korrekte Werte. Dies scheint bisher nicht so zu sein.
+a [Struct]	Die übersichts-Boxen befinden sich nun in einem eigenen Panel. Auf der Startseite wurde ein Split-Panel eingefügt
+a [Gui]		Im Time-Panel werden nun auch einzelne Tage des Wochenendes (am Panel-Anfang) schraffiert
+a [Gui]		Im Time-Panel werden die Vordergrund-Farben je nach Hintergrundfarbe gewählt (Test-Implementierung)
+b [Gui]		Auf der übersichts-Seite wurde überflüssige Rahmen entfernt
+b [BugFix]	Das Alarm-Icon im Time-Panel in der großen Ansicht wird nun korrekt positioniert
+b [BugFix]	Der Tool-Tip für "Nur Ende" im Time-Panel wird nun korrekt angezeigt
+b [BugFix]	Das Time-Panel erkennt nun korrekt, sobald die Maus es betritt oder verlässt, und zeigt das Menü entsprechend an
+b [BugFix]	Das Menü des Time-Panels wird nun beim Resizing korrekt positioniert
+b [Gui]		Geringe Anpassung am Info-Fenster
+b [Content]	Es gibt eine neue Konfigurations-Seite für die übersicht
+b [Content]	Es ist nun über die Gui zu konfigurieren, ob gesperrte Listen beim Startup gezeigt werden oder nicht
+b [BugFix]	Wird bei den Boxen das Kontext-Menü aufgerufen, so wird der Hintergrund nun korrekt neu gezeichnet
+b [Gui]		Das Boxen-Panel auf der Startseite hat nun eine Mindesthöhe
+b [BugFix]	Die Default-Config-Werte wurden so angepasst, dass ein Starten nun auch ohne todoConfig.xml Datei möglich ist 
+b [Content]	Es ist nun über die Gui zu konfigurieren, ob Benutzer-Hinweise beim Startup aktiviert werden oder nicht
+b [BugFix]	Das Hauptmenü hinterlässt nun keinen weißen "Schatten" mehr auf dem Box Panel, wenn man es schließt
+b [Struct]	Die Detail-Anzeige für Todo Items wurde in ein eigenes Panel ausgegliedert als Vorarbeit für kommende Features
+b [Gui]		Die Boxen zeigen nun keinen Reminder mehr an, wenn sich dieser im Status "DONE" befindet
+b [Gui]		Das Time-Panel zeigt nun keine Reminder mehr an, wenn sich diese im Status "DONE" befinden
+b [Struct]	Die Detail-Ansicht für Todo-Items wurde rekonstruiert und kann nun wieder verändert werden
+b [Gui]		In der Detail-Ansicht für Todo-Items ist der Prioritäts-Slider nun an anderer Stelle
+b [Content]	Es wurden Attachments zu den TodoListen hinzugefügt
+b [Gui]		Attachments können per Drag&Drop der Liste hinzugefügt werden
+b [Gui]		Es wird per modalem Dialog abgefragt, wie ein Attachment gespeichert werden soll
+b [Content]	Attachments können nun aus der Liste wieder entfernt werden
+b [Content]	Attachments können durch Doppelklick nun in anderen Programmen geöffnet werden
+b [Gui]		Die Todo-Detail-Ansicht verändert beim horizontalen Vergrößern nur noch die Breite der Attachments
+c [Content]	Attachments können im TDO-Format gespeichert und gelesen werden
+c [Content]	Attachments können nun aus XML-Dateien gelesen werden
+c [Content]	Attachments können nun auch in XML-Dateien gespeichert werden
+d [Gui]		Das Export-nach-Excel-Icon ist erneuert worden
+d [BugFix]	Beim wechsel zwischen Tabs gibt es nun keine Probleme mehr mit dem Verschwinden von Text-Labels
+d [Struct]	Es werden nun die apache commons io eingesetzt (zusätzliche library)
+d [Content]	Werden Property-Eigenschaften beim Startup mit dem Default-Wert überschrieben, so wird dies nun protokolliert
+d [Content]	Attachments können nun in XML intern gespeichert und wieder gelesen werden
+d [Content] Interne Attachments können nun geöffnet werden. Dazu werden sie in ein Temp-File kopiert
+d [Content]	Temporäre Attachments werden nun beim Starten und Beenden gelöscht
+d [Struct]	Das Einlesen von Todo-Projekten wurde überarbeitet und ist nun erheblich effizienter
+d [Struct]	Das Speichern von Todo-Projekten wurde vereinfacht und sollte etwas effizienter sein
+d [Test]	Die Performance beim Laden und Speichern von Projekten mit vielen/großen Attachments (<15MB) wurde getestet und ist in Ordnung 
+d [BugFix]	Das "Gesperrt"-Icon in der Box-übersicht der Startseite sitzt nun in der richtigen Position
+
+
+
+
+
+Release 1.5   ( Content [X] | BugFix [X] | Gui [ ] | Test[ ] Struct [ ] )
+Feature Release (Experience Improvement Collection Update)
+- [16.09.2013] -------------------------------------------------------------------------------------------------------------
+  [Content]	Todo-Listen können nun über einen neuen Button im CSV-Format in die Zwischenablage kopiert werden
+  [Content]	Das Time-Panel zeigt nun ein Wecker-Symbol an, wenn Reminder anstehen
+  [Content] Im Time-Panel werden nun für alle Elemente entsprechende Tool-Tips angezeigt
+  [Content]	Der neue Tool-Tip im Time-Panel zeigt nun auch die Kategorie an, wenn vorhanden 
+  [BugFix]	Der CSV-Export funktioniert nun korrekt, die ID-Spalte wurde entfernt
+  [BugFix]	Drag&Drop ist nun nicht mehr in gesperrte Listen hinein möglich
+  [BugFix]	Drag&Drop ist nun nicht mehr aus gesperrten Listen möglich
+  [BugFix]	Die End-Zeitpunkte der Elemente im Time-Panel werden nun richtig gezeichnet. Bisher wurde nicht korrekt auf den Tag abgerundet 
+  [BugFix]	Elemente, die im Time-Panel links herauswandern, werden nun korrekt in der Länge berechnet
+  [BugFix]	Elemente des Time-Panels sind nun in allen Ansichten korrekt zu ende
+  [Content]	Der CSV-Export wurde zu einem Excel-Datei-Export erweitert
+  [BugFix]	Die zuletzt geöffneten Dateien bleiben nun auch über das Ende des Programms erhalten
+  [BugFix]	Einige Resource-Handler werden nun korrekt geschlossen
+  [Content]	Die ausgewählte Kategorie eines Todo Items kann nun durch drücken von ENTF oder ESC wieder gelöscht werden	
+  
+  
+
+Release 1.4   ( Content [X] | BugFix [ ] | Gui [X] | Test[X] Struct [X] )
+Feinabstimmungs-Package für Release 1.3 | 1.41 16.11.2012 | 1.42 20.11.2012 | 1.44 13.12.2012
+----------------------------------------------------------------------------------------------------------------------------
+  [Content]	Es ist nun konfigurierbar, ob gesperrte Listen beim Startup angezeigt werden sollen
+  [Gui]		Das Aussehen der Kategorien-Auswahlbox wurde angepasst
+  [Test]	Das Verhalten der Kategorien wurde geprüft.
+  [Gui]		Nicht existierende Kategorien oder Elemente ohne Kategorien werden nun durch rote Schrift markiert
+1 [Struct]	Es werden in der Konsole nun keine ###..-Kommentare mehr ausgegeben
+1 [Gui]		Bei der Konfiguration des Log-Levels sind nun Erklärungen zu den Levels angegeben. 
+1 [BugFix]	Beim "Speichern Unter" kann nun korrekt mit Esc oder durch "Abbruch" das Speichern abgebrochen werden  
+1 [Gui]		Es gibt im TimePanel nun eine Tages- und Wochenansicht
+1 [Gui]		Das TimePanel kann nun besser an die gewünschte Größe angepasst werden
+1 [BugFix]	Im Timepanel fehlen nun nicht mehr die Wochenenden, wenn mehr als 1 Wochenende zwischen 2 Trennlinien liegen  
+1 [BugFix]	"Keine Kategorie gesetzt" dieser Zustand kann nun auch persistiert werden
+1 [BugFix]	Es wird nun korrekt angezeigt, wenn eine Kategorie nicht gesetzt oder unbekannt ist.
+1 [Content]	Wenn eine Kategorie nicht (mehr) existiert, so wird nun nicht automatisch eine andere gesetzt  
+1 [Gui]		Die Farbverläufe im TimePanel wurden überarbeitet und haben nun einen schwankenden Verlauf  
+1 [Struct]	Die Generierung des Farbverlaufes wurde etwas optimiert
+1 [Gui]		Das Hinzufügen einer neuen Kategorie geht nun durch Drücken von [Enter] und nicht mehr nur über den Button
+1 [Gui]		Die Kategorie-Verwaltung zeigt existierende Kategorien nun im Dropdown Menü bereits in ihrer derzeitigen Farbe 
+1 [Gui]		Es erscheint nun eine Fehlermeldung, wenn eine bereits existierende Kategorie hinzugefügt werden soll
+1 [Struct]	Es gibt nun einen Default-Config-Wert für "Zeige gesperrte Listen beim Startup"
+1 [Test]	Das Verhalten des Properties "zeige gesperrte Listen beim Startup" wurde erfolgreich getestet
+2 [Gui]		In der TimeLine steht nun "Tages" bzw. "Wochenansicht" in der Ecke anstelle der angezeigten Tage pro Intervall
+2 [Gui]		Das Timepanel setzt nun die Tages/Wochenansicht nicht zurück bei Reset-Drücken
+2 [Gui]		Im Timepanel wird das Jahr im Datum nun abgeschnitten, wenn die Spalten hierfür zu eng werden
+2 [Gui]		Es gibt im Timepanel nun ein schönes Icon für den Wochenansichts-Switch-Button 
+2 [Struct]	Es wurden Vorbereitungen getroffen um die Prioritäten statistisch besser auswerten zu können
+3 [Gui]		Im Timepanel werden die Trennstriche nun nur noch in der Tagesansicht gezeichnet
+3 [Struct]	Das Speichern in Dateien geschieht nun in einem separaten Thread, wodurch die Antwortzeit stark verbessert wird
+4 [Gui]		Tritt beim Speichern im Thread ein Fehler auf, so wird dieser nun als Dialog angezeigt
+4 [Gui]		Tritt beim Speichern der Datei ein Fehler auf, so wird nun der Stern in der Kopfzeile wieder hinzugefügt
+4 [Gui]		Standardmäßig wird nun die Wochenansicht im Timepanel angezeigt, nicht mehr die Tagesansicht
+4 [BugFix]	Es wurde ein Fehler beim Neuzeichnen des TimePanels gefixt, durch den alte Balken beim laden/neuanlegen eines Projektes blieben
+4 [BugFix]	Tritt beim Speichern ein Fehler auf, so wird nun der Status "es gibt ungespeicherte Änderungen" gesetzt
+
+
+
+
+Release 1.3   ( Content [X] | BugFix [ ] | Gui [X] | Test[ ] Struct [X] )
+Erweiterungs-Package (Categories)
+----------------------------------------------------------------------------------------------------------------------------
+  [Content]	Die Struktur der Konfigurations-Seite ist nun auf die Kategorien vorbereitet
+  [Content]	Die Kategorien sind nun in einem extra Properties-File gespeichert
+  [Content]	Existierende Kategorien können nun über die Konfigurations-Seite geändert werden
+  [Content]	Die Konfiguration der Kategorien funktioniert nun rudimentär, es können Kategorien hinzugefügt und entfernt werden
+  [Struct]	Die Datenstruktur des TodoItemStacks wurde angepasst, damit es die Kategorie aufnehmen kann
+  [Content]	Kategorien können nun in xml gespeichert und wieder geladen werden
+  [Gui]		Das Textfeld zum anlegen neuer Kategorien wird nun nach dem Speichern resettet
+  [Gui]		Die Kategorien werden nun entsprechend ihrer Farbe im Hintergrund gemalt
+  [Content]	Die Farbe der Kategorie wird nun auch im Zeitstrahl verwendet
+
+
+
+Release 1.2   ( Content [X] | BugFix [X] | Gui [X] | Test[ ] Struct [X] )
+Allgemeines Allround-Addon | 1.21 04.06.2012 | 1.22 11.06.2012 | 1.26 05.07.2012
+Fügt einige Features hinzu, behebt einige Bugs und verbessert die Oberfläche
+----------------------------------------------------------------------------------------------------------------------------
+  [Gui]		Die Konfigurations-Seite von "System" wurde umsortiert
+  [Gui]		Das Konfigurations-Fenster hat nun ein Icon
+  [Gui]		Die Konfig-Seite "Box" hat nun eine zweizeilige Beschreibung
+  [Gui]		Der Reset-Button der Konfiguration setzt nun auch die geänderten Felder aktiv zurück  
+  [BugFix]	Es wurde ein Fehler behoben, durch den Start- und End-Zeitpunkte nicht gelöscht werden konnten
+  [BugFix]	Die Logik zum Speichern der verschiedenen Zeitpunkte wurde überarbeitet. Es werden nun keine unnötigen Änderungen mehr propagiert
+  [Struct]	Es gab eine Performance-Überarbeitung (mehr finale Objekte) des gesamten Codes
+  [Content] Die Konfigurations-Seite "Farben" wurde entfernt
+  [Content]	Es gibt einen neuen Farbauswahl-Dialog, der nach und nach an mehreren Stellen der Konfiguration integriert wird		
+  [Content]	Die Farben für den Standard-Box-Farbverlauf sind nun konfigurierbar
+  [Content]	Alle Hintergrund-Farben der Boxen sind nun konfigurierbar über die Konfiguration 
+  [BugFix]	Im Zeitstrahl wird der rote Pfeil nun korrekt nicht mehr angezeigt, wenn ein ein altes Element auf DONE steht
+  [Gui]		Der Zeitstrahl zeichnet nun Wochenenden schraffiert
+  [Gui]		Die Datumsanzeige im Zeitstrahl ist nun dunkler, um sich vom Wochenend-Hintergrund hervorzuheben
+  [BugFix]	Im Zeitstrahl wird nun die "Heute" Markierung auch ganz links richtig gesetzt
+  [Struct]	Es wurden umfangreiche Performance-Optimierungen am Code durchgeführt, die den Speicherverbrauch reduzieren
+  [Struct]	Der Code wurde bzgl. Sichtbarkeiten und Variablengebrauch optimiert
+1 [HotFix]	Behebt einen Fehler, durch den Farben bei der Box-Konfiguration nicht korrekt gesetzt wurden  
+2 [BugFix]	Ein Fehler wurde behoben, durch den der Farbverlauf einer Box in der Konfiguration anders war als das Original
+2 [BugFix]	Es wurde ein Fehler behoben, durch den der Dialog zum Erstellen neuer Todos nicht korrekt zurückgesetzt wurde
+2 [Gui]		Die Timeline zeigt das Ende von Tasks nun am "Abend" an. Dieses Verhalten muss sich nun bewähren  
+2 [Content]	Wird ein Reminder verlängert, so wird die Zeit nur neugesetzt, wenn sie nicht inzwischen schon auf später gesetzt wurde 
+2 [BugFix]	Das Menü des Zeitstrahls wird nun auch beim vertikal scrollen korrekt platziert, auch wenn es noch nicht perfekt mitgeht
+2 [Struct]	Anstatt "Config auf default zurücksetzen" zu implementieren, wird das Tool ab sofort mit einer default conf datei ausgeliefert
+3 [BugFix]	Die breite der Tasks im Zeitstrahl wird nun korrekt berechnet und ist nicht mehr zu groß
+4 [Struct]	Es gibt eine neue Debug-Möglichkeit: über Debugging -> Trace anzeigen kann der aktuelle Stacktrace ins Log gepostet werden
+5 [Content]	Die Übersichts-Grafik zeigt nun keine DONE Todos mehr an, da auf DONE mit der Zeit gegen 100% aller Todos stehen 
+6 [Content]	Stößt der Reminder-Handler nun auf ein DONE-Element, so wird bei diesem der Reminder deaktiviert
+6 [Struct]	Das Zeichnen der Box wurde stärker modularisiert und konfigurierbarer gestaltet. Mehr Optionen sind nun für später konfigurierbar
+  
+  
+  
+Release 1.1   ( Content [X] | BugFix [ ] | Gui [X] | Test[ ] Struct [X] )
+Configuration-Addon
+Erweitert den Todo-Manager um eine grafische Konfigurations-Oberfläche und erweitert die Timeline etwas
+--- [16.05.2012] -----------------------------------------------------------------------------------------------------------------
+  [Struct]	Breite und Höhe der Boxen sind nun konfigurierbar 
+  [Struct]	Die Position des Reminders in der Box ist nun konfigurierbar
+  [Struct]	Die Position des Alarms in der Box ist nun konfigurierbar 
+  [Struct]	Der Prototyp für die neue Konfiguration des Programms wurde angelegt
+  [Gui]		Der Konfigurations-Prototyp kann nun angezeigt werden
+  [Content]	Das Framework für die Konfiguration ist implementiert
+  [Content] Geänderte Konfiguration kann nun im File gespeichert werden
+  [Content]	Die Layout-Konfiguration der Boxen ist nun über einen Editor möglich
+  [Content]	Die per Default angezeigten Status sind nun per gui konfigurierbar
+  [Content]	Das Default Date-Format ist nun per gui konfigurierbar
+  [Content]	Alle System-Properties können nun per gui konfiguriert werden
+  [Content]	Es wurden einige zusätzliche Platzhalter in die konfiguration als Vorbereitung eingefügt
+  [Gui]		Die Übersichts-Boxen haben nun einen Farbverlauf im Hintergrund
+  [Struct]	Die Box wurde ausgelagert und ist nun keine innere Klasse mehr
+  [Gui]		Der Menüpunkt "Einstellungen"->"Tabs beim Laden anlegen" wurde entfernt, da er in der Konfiguration enthalten ist  
+  [Gui]		"Secret Door" heißt nun "Debugging"
+  [Gui]		Änderungen einer Seite der Konfiguration können nun zurückgesetzt werden
+  [Gui]		Bei der Zeitlinie kann nun bei Zeiträumen per Doppelklick direkt das entsprechende Todo-Item angezeigt werden
+  [Gui]		Doppelklick auf der Zeitlinie funtioniert nun auch bei Start- und End-Balken
+  [Gui]		High Priority Tasks mit Alarm-Status werden nun mit rotem Hintergrund anstatt rotem Text visualisiert
+
+
+
+Release 1.03   ( Content [X] | BugFix [X] | Gui [X] | Test[ ] Struct [X] )
+Performance-Pack I
+Verbessert erhöht Usability und Performance rundherum durch kleine Änderungen und Features sowie behebt kleinere Fehler
+-----------------------------------------------------------------------------------------------------------------------------
+1 [Gui]		Die Grid-Linien des Zeitstrahls sind nun gestrichelt
+1 [Gui]		Die Timeline zeigt nun die Todos der ausgewählten Liste an. Ist keine Liste selektiert, so werden alle Todos angezeigt
+1 [Gui]		Das Overview-Tab wurde optimiert, so dass es nun bei Klicks ohne Änderung nicht neu gezeichnet werden
+1 [BugFix]	Es entsteht nun kein Fehler mehr, wenn man das Fenster während dem Anzeigen eines High-Priority-Tool-Tips verlässt
+1 [Gui]		Der Zeitstrahl zeigt nun an, welche Liste derzeit angezeigt wird
+1 [Gui]		Der Tool-Tip bei gesperrten Projekten wurde mit einem besseren Hinweis zum entsperren versehen
+1 [BugFix]	Der Reminder kann nun deaktiviert werden. Dies wurde bisher durch einen Fehler verhindert
+1 [Gui]		Aktive Reminder-Fenster werden nun beim Deaktivieren des Reminders geschlossen
+1 [Gui]		Aktive Reminder-Fenster werden beim Neu-Laden von Projekten nun geschlossen
+1 [Struct]	Es wurden einige Code-Warnings entfernt
+1 [BugFix]	Es können nun auch Listen gesperrt werden, die kein Tab besitzen, ohne dass ein Fehler geworfen wird
+1 [Content]	Das automatische Anlegen von Tabs beim Laden von Projekten kann nun deaktiviert werden, um die Performance zu verbessern
+1 [Gui]		Es gibt nun ein besseres Tray-Icon für den deaktivierten Reminder
+
+
+
+
+Release 1.02   ( Content [X] | BugFix [X] | Gui [X] | Test[ ] Struct [ ] )
+Tool-Pack 1 Release 25.04.2012 | .024 02.05.2012 | .025 07.05.2012
+Fügt dem Todo Manager den Zeitstrahl hinzu
+--- [25.04.2012 - 07.05.2012] -----------------------------------------------------------------------------------------------
+1 [Content]	über den System Tray kann der Reminder nun aktiviert und deaktiviert werden
+1 [Gui]		Es gibt nun auf der High Priority Liste einen Tool-Tip für die Elemente
+1 [Gui]		Für neue Features wurden die Todo Listen auf der Übersichtsseite deutlich verkleinert
+1 [Content]	Der neue Zeitstrahl auf der Übersichtsseite wurde in einer rudimentären Version eingeführt.
+1 [Content]	Die neuen Werte "Plan-Datum Start" und "Plan-Datum Ende" wurden eingeführt
+1 [Content]	Der neue Zeitstrahl wurde verbessert und optimiert
+1 [Content]	Der neue Zeitstrahl zeigt nun Plan-Daten an
+1 [Content]	Der neue Zeistrahl zeigt nun unterschiedlich nur-start, nur-ende und beides-Werte an
+1 [Gui]		Der neue Zeitstrahl hat den heutigen Tag nun rot markiert
+1 [Gui]		Die Zeitleiste ist nun beschriftet nach Todo-Liste
+1 [Gui]		Die Zeitleiste fängt nun immer bei Montag dieser Woche an
+1 [Gui]		Die Zeitleiste zeigt nun keine in der Vergangenheit beendeten Tasks an
+1 [BugFix]	Die Zeitleiste zeigt nun in der Vergangenheit gestartete Tasks korrekt an
+1 [Gui]		Die Zeitleiste kann nun per Scroll-Rad links und rechts verschoben werden
+1 [BugFix]	Es wurde ein Fehler in der Zeitleiste beim zeichnen von Tasks mit Start in der Vergangenheit behoben
+1 [BugFix]	Es wurden einige Fehler der Zeitleiste mit ohne-start oder ohne-ende Aktivitäten behoben 
+1 [Gui]		Im Todo-Editor hat "Zeitplanung" nun einen erläuternden Tooltip
+2 [Gui]		Die Fonts in der Zeitleiste sind nun einheitlich und etwas kleiner
+2 [Gui]		Linke und Rechte Maustaste sind in der Zeitleiste nun vertauscht
+2 [Gui]		Der Zeitstrahl hat nun links unten eine kleine Intervall-Anzeige
+2 [Gui]		Der Zeitstrahl zeichnet nun "heute" rot
+2 [Content]	Plan-Zeiten können nun auch in XML gespeichert und geladen werden
+2 [Gui]		Im Zeitstrahl wird nun der Tag "heute" immer als roter Strich angezeigt
+2 [Gui]		Der Zeitstrahl aktualisiert nun beim scrollen/klicken die Scrollbalken
+2 [Gui]		Der Zeitstrahl nimmt nun die ganze Breite ein und hat einen veränderten Rahmen
+3 [Gui]		Schriftart im Zeitstrahl von Tahoma auf Arial geändert
+3 [Gui]		Der Zeitstrahl hat nun ein kleines Hover-Menü rechts unten bekommen, welches noch Platz für Erweiterungen bietet
+3 [Gui]		Der Zeitstrahl hat im Menü nun einen Reset- und einen Info-Button
+4 [Gui]		Das Zeitstrahl-Menü wurde nun so gestaltet dass es korrekt ein- und ausgeblendet wird ohne zu verschwinden
+4 [Gui]		Das Zeitintervall beim Zeitstrahl kann nun nur noch über 2 Buttons des Menüs geändert werden, nicht mehr per Mausklick
+4 [BugFix]	Das Menü im Zeitstrahl wird nun korrekt mitverschoben horizontal beim Verändern der Fenstergröße 
+4 [Gui]		Die Zeitleiste markiert nun mit einem kleinen Pfeil + Hover-Text, wenn es nicht angezeigte Todos zu früherem Zeitpunkt gibt
+5 [Gui]		Der Standardbalken der Zeitleiste ist nun mit Farbverlauf und Rahmen
+5 [Gui]		Der Tool-Tipp für High Priority List Elemente ist nun etwas intelligenter (zeigt text wenn letzter status = name des elements)
+
+
+
+
+
+Release 1.01   ( Content [ ] | BugFix [ ] | Gui [X] | Test[ ] Struct [ ] )
+Gui Usability Package Released 23.04.2012
+Dieses UI-Paket verändert die Oberfläche an vielen Punkten gezielt um Übersichtlichkeit und Usability zu erhöhen
+--- [04.06.2012] ---------------------------------------------------------------------------------------------------------------
+1 [Gui]		Die High Priority List ist nun je nach Status farbig
+1 [Gui]		Die High Priority List ist nun grafisch verändert und hat einen Rahmen
+1 [Gui]		Die High Priority List ist nun präzieser beim Klicken
+1 [Gui]		Die High Priority List Prioritäts-Strahlen sind nun etwas dicker
+1 [Gui]		Nach "Priorität" kann nun in der Todo-Liste sortiert werden
+1 [Gui]		Die Todo List Spalte "Priorität" kann nun die Breite nicht mehr verändern
+1 [Gui]		Die Spalte "Datum" der Todo-Liste ist nun deutlich schmaler
+1 [Gui]		In der Todo Liste werden die vertikalen Linien nun nicht mehr angezeigt um optisch aufzuräumen
+1 [Gui]		Das Reminder Tray Fenster zeigt nun beim "schließen" nicht mehr das entsprechende Element im Hauptfenster
+1 [Gui]		Die Trennlinie auf dem Übersichts-Tab wurde etwas nach oben geschoben
+1 [Gui]		Der Text der High Priority List wird nun vor dem Rahmenende abgeschnitten
+1 [Gui]		Die Kästchen der High Priority List hat nun rechts und links den gleichen Platz
+1 [Gui]		Die Trennlinie auf der Übersicht wird nun ausgeblendet, wenn weder summary noch high prio list angezeigt werden
+1 [Gui]		Die Filter wird nun nicht beim Initialen Wert "Filtern..." schon aktiv
+1 [Gui]		Die Kästen auf der Übersicht haben nun abgerundete Ecken
+1 [Gui]		Die Schriftart des extra Text Exitors wurde verkleinert und ist nun nicht mehr fett
+
+
+
+Release 1.0   ( Content [ ] | BugFix [ ] | Gui [ ] | Test[ ] Struct [ ] )
+Erste Major Version released
+--- [21.04.2012] ---------------------------------------------------------------------------------------------------------------
+Version 1.0 Released!
+
+
+
+Release 0.9   ( Content [X] | BugFix [X] | Gui [X] | Test[X] Struct [X] )
+Finalizing-Release 03.04.2012 | a 17.04.2012 | b 17.04.2012 | e 20.04.2012 | f 21.04.2012
+----------------------------------------------------------------------------------------------------------------------------
+  [Test]	Es wurde das Verhalten bei fehlenden Properties und fehlender Property-Datei geprüft
+  [Struct]	Für die Konfiguration gibt es nun Default-Werte, die aktiviert werden, falls das Config-File fehlt oder nicht eingelesen werden kann
+  [Struct]	Fehlende Properties werden nun grundsätzlich mit Default-Werten aufgefüllt
+  [Gui]		Es gibt nun beim Programm-Start gleich einen Nutzer-Hinweis, wie man mit dem Programm loslegt
+  [BugFix]	Beim anlegen neuer Todos wurde ein Fehler behoben, bei dem auch beim Abbrechen durch schließen des Fensters ein neues Todo angelegt wurde
+  [Struct]	Die benötigten Java Libraries werden nun parallel zum jar gespeichert um das jar kleiner zu halten
+a [Gui]		Der Menü-Punkt "Suchen" heist nun "Filtern"
+a [Gui]		Der Menü-Punkt "Neue Liste hinzufügen" besitzt nun einen Tooltip
+a [Struct]	Es wurde ein Image-Controller zur Verwaltung aller Grafik eingefügt, um den Speicherverbrauch etwas zu senken
+a [Gui]		Es gibt nun das für v1.0 erforderliche "About" Fenster
+b [Gui]		Der Umbenennen Button im Overview Context-Menü hat nun ein Icon
+b [Content]	Todo Listen können nun gesperrt und entsperrt werden. Dies wird auf dem Übersichtstab visualisiert
+b [Content]	Im secret door wird das log im fenster nun automatisch aktualisiert
+b [Content]	Es gibt nun eine Größen-Begrenzung für die Anzahl der Log-Einträge, danach werden die ältesten Einträge gelöscht
+b [Content]	Die maximale Anzahl von Log-Einträgen ist nun über das Config-File konfigurierbar
+b [Content]	Drag&Drop funktioniert auch zwischen zwei Todo Manager Instanzen
+b [Content]	Kurze Lizenz sowie ein Logo auf dem Info-Fenster eingefügt
+b [Gui]		Die Context-Menüs des Overview-Panels haben nun Trennstriche
+b [Gui]		Die gesperrten Listen können nun ein- und ausgeblendet werden auf dem Overview-Tab
+b [BugFix]	Es wurde ein Fehler behoben, bei dem nicht angezeigte Listen trotzdem ein Kontext-Menü im leeren Raum erzeugt haben
+b [BugFix]	Der Stern, der im Titel steht, wenn ein Projekt ungespeichert ist, wird nun beim Speichern korrekt entfernt
+b [Gui]		Das About-Fenster ist nun immer im Vordergrund
+b [BugFix]	Ein Fehler in der Behandlung beim Öffnen nicht vorhandener Dateien wurde behoben
+b [Gui]		Das Datei öffnen Icon wurde ausgetauscht
+b [Content]	Ist eine Liste gesperrt, so können nun keine Todos mehr hinzugefügt werden
+b [Content]	Ist eine Liste gesperrt, so können nun keine existierenden Elemente mehr verändert werden
+c [BugFix]	Gesperrte Listen werden nun auch im XML Format gespeichert und gelesen. Es besteht Rückwärtskompatibilität
+c [Content]	Dateien können nun per Drag&Drop in das Programm geöffnet werden
+c [Test]	Version 0.9c wird nun zum offiziellen Test freigegeben
+d [Content] Es wurde das Prioritäten-System eingeführt, mit dem jedes Todo-Item mit einer Priorität versehen werden kann.
+d [BugFix]	Es wurden einige Probleme beim Drag&Drop zwischen File Drag&Drop sowie Todo Item Drag&Drop behoben
+e [Gui]		Bei Gesperrte Todo-Listen ist nun der Cursor verändert, so dass man sieht dass die Liste gesperrt ist 
+e [BugFix]	Es wurde ein Fehler behoben, durch den beim Laden bzw. neuöffnen eines geschlossenen Tabs der Cursor nicht verändert wurde
+f [Gui]		Auf der Übersichts-Seite wurde die statistische Übersicht verkleinert und auf die Seite geschoben
+f [Content]	Es gibt auf der Übersichtsseite nun eine Liste der am höchsten Priorisierten Tasks. Die Funktionalität ist noch nicht getestet
+f [Gui]		Es gibt nun einen Trennstrich auf der Übersichtsseite zwischen Todo Listen und übersichtselementen unten
+f [Gui]		Durch Doppelklick auf ein Element der höchsten Prioritäten Todos wird nun das Tab mit dem entsprechenden Todo geöffnet
+f [BugFix]	Es wurde ein Fehler behoben, durch den der Reminder Handler bei Neustart des Programms nicht mitgestartet wurde.
+f [Content]	Die High Priority Liste führt nun mit Dopelklick zum gesuchten Todo und wählt dieses direkt aus
+f [Content]	Doppelklick auf ein Reminder Todo wählt diese im geöffneten Tab nun auch aus
+f [BugFix]	Es wurde ein Fehler behoben, durch den die Prio-Liste nicht korrekt aktualisiert wurde, wenn die Prio eines Tasks geändert wurde
+f [Struct]	Der Algorithmus zum Anzeigen der High Priority Todos wurde überarbeitet und arbeitet nun wesentlich stabiler auf dem aktuellen Model
+f [Struct]	Durch den neuen Algorithmus konnte einiges an Code aufgeräumt werden
+f [Gui]		Die High Priority List zeigt nun nur noch Todos an die nicht "DONE" sind
+f [Gui]		Ändert sich eine Priorität, so wird dies auch korrekt in der High Priority Übersicht angezeigt
+f [Struct]	Die abgeschlossenen Testcases wurden aus dem Release entfernt 
+f [Struct]	Alle Klassen wurden überarbeitet, aufgeräumt und zwischenfinalisiert
+f [BugFix]	Es wurde ein Fehler behoben, durch den beim Neuladen eines Projektes das letzte Element der High Prio Liste nicht entfernt wurde
+f [Gui]		Die High Priority Liste kann nun ein- und ausgeblendet werden über das Hintergrund Kontextmenü
+f [BugFix]	Eine unkritische Exception wurde entfernt, wenn man den prio-slider beim todo anlegen verändert und dann abgebrochen hat 
+f [Struct]	Die Anzahl von High Priority Todos in der übersicht ist nun parametrisiert und kann später konfigurierbar werden
+f [Content]	Die Anzahl von High Priority Todos ist nun über das Config File konfigurierbar
+
+
+
+
+Release 0.8   ( Content [X] | BugFix [X] | Gui [X] | Test[ ] Struct [X] )
+Feature-Release 21.03.2012 | a 26.03.2012 | c 02.04.2012
+--- [26.03.2012 - 02.04.2012] -------------------------------------------------------------------------------------------------------
+  [Content]	Es ist nun möglich, einzelne Todos von einer Liste in eine andere zu verschieben
+  [Struct]	Um das Todo-Verschieben zu ermöglichen wurden einige Grundstrukturelle Änderungen durchgeführt
+  [BugFix]	Auch nach dem schließen und neuöffnen von Tabs funktioniert das drag&drop nun
+  [Gui]		Strg+F öffnet nun nur noch im derzeit geöffneten Fenster den Filter
+a [BugFix]	Es wurde ein Fehler behoben, der bei langen Todos die Todo-Detail-Ansicht verschoben hat
+a [BugFix]	Ein Fehler wurde behoben, der beim Rendern der Statusbox eine Endlosschleife erzeugt hat
+a [Struct]	Das gesamte Projekt wurde etwas überarbeitet, Code-Warnungen behoben und etwas aufgeräumt
+a [Content]	Beim Anlegen neuer Todos kann nun direkt der initiale Status des Todos ausgewählt werden
+a [Gui]		Beim Anlegen neuer Todos hat nun das Textfeld den Fokus   
+a [Gui]		Beim Anlegen neuer Todos wurde die Feld-Anordnung angepasst
+b [Gui]		Es gibt nun einen Hinweis im Bereich neben den Tabs, wenn das Hauptmenü ausgeblendet ist, wie es wieder einzublenden ist
+b [Gui]		Der Negotiation-Button hat nun einen Hover-Text und heist nun "Umkehren"
+c [Gui]		Beim anlegen neuer Todos kann das Fenster nun durch Klicken von ESC geschlossen werden
+c [Gui]		Beim anlegen neuer Todos ist das Eingabefeld nun nicht mehr zu groß. Das Fenster wurde in der größe etwas modifiziert
+c [Gui]		Der Filter für Todos wird nun bei jedem Tastendruck aktualisiert, nicht erst bei Enter
+c [BugFix]	Beim XML-Speichern werden Anführungszeichen nun auch korrekt maskiert
+c [Gui]		Der Todo-Editor ist nun deaktiviert/ausgegraut, solange kein Item angezeigt wird.
+c [Gui]		Ist die Todo-Listen-Tabelle komplett leer, so erscheint ein Hinweis, wie ein neues Todo anzulegen ist.
+c [Gui]		Die neue Hintergrundgrafik der Todo-Tabelle wurde überarbeitet
+c [BugFix]	Es wurde ein Fehler beim Rendern des Todo-Listen Hintergrundes behoben der die Filter blockiert hat
+c [Struct]	Das Konfigurations-Modul wurde umgebaut, so dass es nun im Fehlerfall einen Leer-String anstatt null zurückliefert.
+c [Content]	Es gibt nun ein Einstellungsmenü. Darüber können Bedienungs-Hinweise ein- und ausgeblendet werden
+c [COntent] Das Ein- und Ausblenden von Benutzerhinweisen beinhaltet nun die Todo-Tabellen-Hintergrundgrafik
+
+
+
+Release 0.7   ( Content [X] | BugFix [X] | Gui [X] | Test[ ] Struct [X] )
+Feature-Release 21.03.2012
+--- [21.03.2012 - 22.03.2012] ---------------------------------------------------------------------------------------------------
+  [Content] Es gibt nun eine Chart-übersicht auf dem übersichts-Tab
+  [Content] Die Chart-übersicht kann über Rechte Maustaste ein und ausgeblendet werden
+a [Struct]	Das Chart ist nun in einem eigenen Panel
+a [Content]	Das Chart hat nun Hover-Texte
+b [BugFix]	Das Chart kann nun wieder ein- und ausgeblendet werden
+b [BugFix]	Im Chart wurden Berechnungsfehler bei DONE, ALARM und WAIT korrigiert
+b [Gui]		Der Shortcut STRG+S ist nun auch bei ausgeblendetem Hauptmenü zugänglich	
+b [Gui]		Der Button zum Hinzufügen von neuen Todos hat nun einen (vorläufigen) Hover-Effekt
+b [Gui]		Es gibt nun eine Abfrage beim Speichern, ob eine Datei überschrieben werden soll, wenn sie schon existiert
+b [Gui]		Bei der Speicher-Abfrage wird nun nicht gefragt, wenn in der schon geöffneten Datei gespeichert werden soll.
+b [Gui]		Die Todo-History eines Items wird nun farbig dargestellt je nach Todo-Typ
+b [Struct]	Der Todo-History-Renderer arbeitet nun auf Basis des TodoITems nicht mehr von Labels
+b [Content]	Es gibt nun einen Filter-Mechanismus für die Todo-Liste auf Basis der Beschreibung
+b [Content] Der Filter durchsucht nun auch alle Sub-Elemente des Todo Item Stacks
+c [BugFix]	Der Filter ist nun nicht mehr case sensitiv
+c [Gui]		Die Transparenz des Charts wurde etwas verringert, nun ist das Chart besser sichtbar
+c [BugFix]	Der große Todo-Text-Editor wird nun zurückgesetzt, wenn das anvisierte Element ausgefiltert wird
+c [Gui]		Das Chart ist nun farbig nach status und hat korrekte Tool-Tips
+c [Struct]	Es wurde eine Prüfung auf Änderung der Todos eingeführt, damit das Chart nicht ständig neu gezeichnet wird
+c [BugFix]	Wird eine Box aktualisiert, so wird automatisch auch der Chart aktualisiert, auch wenn er aktiv ist
+c [BugFix]	Beim neuladen von projekten, hinzufügen und entfernen von boxen wird nun der Graph zurückgesetzt
+
+Release 0.6   ( Content [X] | BugFix [X] | Gui [X] | Test[ ] Struct [ ] )
+Full-Release
+--- [19.03.2012] ----------------------------------------------------------------------------------------------------------------
+  [BugFix]	Das Menü wurde bei jeder Sonder-Taste ausgeblendet (z.B. Enter). Dies ist nun nur noch bei ALT der Fall.
+  [BugFix]	XML-Speicherung maskiert nun XML-Sonderzeichen da es sonst Fehler beim Speichern und Laden mit Sonderzeichen gibt
+  [BugFix]	Das Hauptmenü kann durch ALT-Drücken nun von überall ein/ausgeblendet werden und nicht wie vorher nur manchmal
+  [BugFix]	Das Kopf-Element in der Todo Combo-Box wird nun korrekt eingefürbt
+  [Content] Das Todo-Text-Fenster kann nun in einem größeren Editor bearbeitet werden
+  [Struct]	Der neue Todo-Editor war sehr aufwändig, deswegen wurde noch einiges aufgeräumt
+  [Gui]		Die Boxen in der übersicht werden nun nicht mehr mit runden Ecken sondern mit geraden Ecken gezeichnet
+  [Content]	Jede Box in der übersicht hat nun eine grafische Anzahl, die angibt, wieviel prozent von insgesamt allen offenen todos
+  			in diesem projekt liegen. Hierdurch sind nun gleich die Projekte mit dem Haupt-Aufwand zu erkennen.
+  [Gui]		Die Farben beim Aufwands-Indikator Farbverlauf wurden etwas angepasst
+  [Gui]		Die Abstände zwischen den Boxen in der übersicht wurden verringert
+
+
+
+Release 0.5a-f   ( Content [X] | BugFix [X] | Gui [X] | Test[ ] Struct [X] )
+Full-Release
+--- [06.03.2012 - 14.03.2012] ---------------------------------------------------------------------------------------------------
+  [Gui]		Es gibt ein paar erste farbliche Verbesserungen
+a [Gui]		Todo-Listen ohne offene Todos werden im übersichts-Tab nun nur halbsichtbar gezeichnet
+a [Gui]		Die Combo-Box für den Status hat nun ein Icon bei "DONE" und "DONE" ist grün und jetzt das unterste Element.
+a [Gui]		Die Todo-Liste sortiert nun nach Status in einer anderen Reihenfolge (TODO nach DONE)
+a [Gui]		Das Fenster zum Eingeben des Namens eines neuen Todos ist nun erheblich breiter
+a [Gui]		Das Hauptfenster startet nun in einer kleineren Größe
+b [Gui]		Die Trennlinien der Todo-Listen-Tabelle sind nun wesentlich heller
+b [BugFix]	Die Todo-Listen-Tabelle sortiert nun alle Spalten korrekt
+b [Struct]	Der Datei öffnen/speichern-Dialog wurde überarbeitet und hat nun korrekte file Filter
+b [Struct]	Die Infrastruktur für das Speichern und Laden in XML ist nun gelegt	
+b [Content]	Es ist nun vorerst (ungetestet) möglich, im XML-Format zu speichern. Lesen geht noch nicht
+c [Content]	Das XML-Speichern wurde überarbeitet, die XML-Struktur vereinfacht
+c [Content] Das XML-Speichern und XML-Laden startet nun in die der beta-phase. Es ist möglich zwischen xml und tdo zu wählen
+d [BugFix]	In der Todo-Liste werden nun auch erledigte Todos mit Reminder komplett grün angezeigt (auch die Zeit)
+d [Gui]		Pendings und Waits sind jetzt mal grau. mal schaun wie es läuft!
+d [BugFix]	Bei der XML-Speicherung wurd ein Fehler behoben, der das Modification-Date nicht oder falsch setzte
+d [BugFix]	Es wurde ein Fehler beim XML-Laden behoben, so dass UTF-8 Dateien mit Sonderzeichen korrekt eingelesen werden
+d [Gui]		Die Farbe ausgewählter Elemente in der Todoliste und der Todohistory sind nun gleich und konfigurierbar
+e [BugFix]	Das Sortieren der Todo-Liste klappt nun auf allen Spalten egal ob Datum, Status oder ID sinnvoll
+e [Struct]	Es wurde ein Renderer für die Todo History eingebaut
+e [Gui]		Mouse-Hover über ein Todo Item in der Todo Item History zeigt nun das formatierte Erzeugungs-Datum an
+e [BugFix]	Es wurde ein Fehler behoben, der jeden TodoItemStack beim Laden einer XML-Datei mit einem zusätzlichen History-Element initialisierte
+f [BugFix]	Beim XML-Laden wurden die ID der Todo Item Stacks nicht gesetzt. Dieser Fehler wurde behoben
+f [Gui]		Durch drücken von [ALT] kann das Hauptmenü nun ein- und ausgeblendet werden
+f [Content]	Die Konfigurations-Datei wird nun in einem separaten Thread auf Änderungen überwacht. Jedoch werden nicht alle Änderungen direkt übernommen
+f [Content]	Das Polling-Interval für Änderungen an der Konfigurations-Datei ist nun konfigurierbar (default 1000)
+
+
+
+Release 0.4   ( Content [X] | BugFix [X] | Gui [X] | Test[ ] Struct [X] )
+Full-Release
+--- [28.02.2012 - 05.03.2012] -------------------------------------------------------------------------------------------------
+a [BugFix]	Der Speicher-Vorgang eines Todos wurde überarbeitet und nimmt nun auch das Datum korrekt mit
+a [Gui]		Das Reminder Fensterchen hat nun einen Button Hover Effekt über dem Deakivieren Bild
+a [Gui]		Die Todo-Item Ansicht wurde überarbeitet. So gut gefüllt es mir aber noch nicht.
+a [Content]	Der Secret-Door-Logviewer ist nun auch als Fenster verfügbar
+a [Gui]		Der Fenster-Teiler bleibt nun hauptsächlich gleich im unteren Bereich und resized im oberen Bereich
+a [BugFix]	Es wurde einiges an der aktualisierungs-logik im zusammenhang mit dem reminder-fenster modifiziert
+b [BugFix]	Es wurden nichtgenutzt librarys entfernt
+b [BugFix]	Das Hinzufügen einer neuen Projetliste setzt nun auch "ungespeicherte Änderungen"
+b [Struct]	Es git erste Versuche, eine Umstellung auf MVC durchzuführen. Stufe 1 beinhaltet nur nichtrelevante Änderungen
+b [BugFix]	Es wurde ein Fehler beim Öffnen gefixt, durch den auch bei Drücken von Abbrechen geöffnet wurde
+c [Struct]	Die Models wurden abgespeckt, es wurden diverse ungenutzte Konstruktoren und Methoden entfernt
+c [Struct]	Die Models wurden vollständig überarbeitet, soweit dies ohne Serialisierungsänderung möglich war
+c [Content]	Todo-Listen können nun umbenannt werden
+d [Gui]		Beim umbenennen einer Todo-Liste steht nun der bisherige Name bereits im Eingabefeld drin
+d [Gui]		Todolisten ohne offene Todos werden nun im übersichts-Tab grün gezeichnet
+d [Gui]		Es wird nun automatisch bis ans Ende der Todo-History runtergescrollt
+d [BugFix]	Es wird in der Todo-History nun der letzte existierende, nicht wie zuvor der letzte sichtbare Eintrag ausgewählt
+d [Gui]		Die Titel-Leiste zeigt nun den derzeit geöffneten Projektpfad oder ein "nicht gespeichert" an
+d [Struct]	Es wurde eine erste Performance-Bewertung durchgeführt
+
+
+Release 0.3a-d ( Content [ ] | BugFix [X] | Gui [X] | Test[ ] )
+Verbesserter Loading-Splash, Backdoor Mode, Tray Update
+--- [22.02.2012 - 27.02.2013] -------------------------------------------------------------------------------------------------------------
+- [BugFix]	Es gibt diverse Anpassungen an dem Splashscreen
+- [BugFix]  In der TodoListe wird das Alarm-Icon jetzt mit Datum anstatt mit Status angezeigt
+- [Gui]		Es gibt nun ein würdiges Start- und Ladefenster mit progress bar
+- [Gui]		Es gibt nun ein würdiges notification fenster.
+- [Gui]		Dem Notify-Fenster steht nun der ganze TIS zur Verfügung, nicht mehr nur die reinen Texte
+- [Gui]		doppelklick auf das notify-fenster öffnet nun das dazugehörige tab im hauptfenster
+- [BugFix]	exception handling im reminder thread angepasst 
+- {BugFix]	beim starten wird nun direkt ein leeres projekt angelegt und der reminder richtig registriert
+- [Gui]		Es gibt nun einen Backdoor-Modus, in dem derzeit das Logfile ausgelesen werden kann (auf konsole). Ist über das config zu aktivieren
+- [Gui]		hover-text für todo-itemliste nun enthalten
+- [Gui]		Der Text im Text-Feld ist nun etwas kleiner geworden. In dem Zuge wurde gleich ein automatischer Zeilenumbruch eingebaut
+- [Gui]		Es gibt nun einen nicht-mehr-erinnern button im tray screen
+- [Gui]		Wird der tray screen geschlossen, wird der reminder auf +x minuten erneut eingestellt 
+- [Content]	Es wurde ein Pre-Content für das nächste Release eingebaut: Die Todo-Tabelle lässt sich nun sortieren. ist jedoch noch zu testen
+- [Bug]		Beim Doppelklick auf das Reminder Fensterchen geht nun der Todo MAnager an entsprechender Stelle wieder auf
+
+
+
+Release 0.2b-d (Entwickler-Vorreleases)
+Loading-Splash
+--- [15.02.2012] ---------------------------------------------------------------------------------------------------------------------------
+- [Struct]	cleanup, doku, offene tasks eingearbeitet
+- [Gui]		Kleine Anpassung an der Todolisten-Tabelle: Status nun 2. Feld
+- [Gui]		die todos in der übersicht sind nun farbig und haben bilder für alarm und reminder
+- [BugFix]	das rerollen der zuletzt geöffneten dateien im startmenü wurde gefixt
+- [Struct]	der jfilechooser wird nun aus performance-gründen beim start geladen
+- [Content]	es gibt nun einen rudimentären ladebildschirm wg. der nun längeren ladezeit durch den jfilechooser
+
+
+
+Release 0.2a (Entwickler-Vorrelease)
+Globales Todo-Projekt, Reminder
+--- [15.02.2012] ---------------------------------------------------------------------------------------------------------------------------
+- [Struct]	einführung von globalem todo project
+- [Content]	neu angelegte todostacks werden nun direkt in der tabelle selektiert 
+- [Content]	erste version der geöffnete dateien history eingeführt
+- [Struct]	reminder-daten können nun gespeichert werden
+- [Content]	der reminder wurde aktiviert
+- [Content]	der reminder zeigt nun eine tray bubble
+
+
+
+Release 0.1b (Entwickler-Vorrelease)
+Ramp-Up, Basisinfrastruktur
+--- [14.02.2012] ---------------------------------------------------------------------------------------------------------------------------
+
+- Projektrampup
+- Basisinfrastruktur
+- Speicherung als serialisierte Objekte
+- Schnittstelle zur Speicherung in XML
+- Laden, speichern, neu anlegen von Projekten
+- Startmenü mit Grafiken und Shortcuts
+- Farbiger Renderer für die Todo-Liste
+- Handling für speichern/speichern unter/verwerfen
+- konfigurierbar über xml file
+- schließen von tabs über den tab-reiter
+- umgesetzte stati: todo, pending, wait, done, alarm, negotiation
+- trayIcon hinzugefügt mit exit und open button und doppelklick
+- overview tab eingerichtet. raster-anordnung, öffnet tab bei doppelklick auf projekt
+- zentralen logger hinzugefügt

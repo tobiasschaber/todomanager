@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+<entry key="maxLogEntries">50</entry>
+<entry key="box.color.left.locked">-3355444</entry>
+<entry key="box.color.left">-28129</entry>
+<entry key="DefaultSelectionMode"> TODO PENDING WAIT ALARM</entry>
+<entry key="box.reminder.y">33</entry>
+<entry key="box.reminder.x">13</entry>
+<entry key="todoListColorDone">-16726016</entry>
+<entry key="DefaultDateFormat">dd.MM.yyyy HH:mm</entry>
+<entry key="highPrioCount">7</entry>
+<entry key="logLevel">DEBUG</entry>
+<entry key="todoListColorDefaultBg">-1</entry>
+<entry key="todoListColorSelection">-6832897</entry>
+<entry key="showLockedListsOnStartup">false</entry>
+<entry key="box.width">199</entry>
+<entry key="enableHints">true</entry>
+<entry key="todoListColorAlarm">-65536</entry>
+<entry key="box.color.left.clean">-13369549</entry>
+<entry key="todoListColorDefault">-16777216</entry>
+<entry key="reminderDelayTimeSec">900</entry>
+<entry key="secretDoor">enabled</entry>
+<entry key="box.height">55</entry>
+<entry key="configFilePollingIntervalMs">10000</entry>
+<entry key="timepanel.startup.default.view">day</entry>
+<entry key="box.color.right">-986896</entry>
+<entry key="box.warning.y">9</entry>
+<entry key="box.warning.x">158</entry>
+<entry key="createTabsOnLoadFile">false</entry>
+<entry key="box.color.left.alarm">-65536</entry>
+<entry key="showHighPrioListOnStartup">true</entry>
+<entry key="showSummaryDiagramOnStartup">false</entry>
+</properties>
