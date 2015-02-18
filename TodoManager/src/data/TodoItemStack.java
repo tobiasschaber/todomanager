@@ -1,11 +1,14 @@
 package data;
 
 import java.io.Serializable;
-import java.util.*;
-
-import utils.DateUtils;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Stack;
 
 import main.Logger;
+import utils.DateUtils;
 
 /**
  * diese klasse repräsentiert ein komplettes todo-item. es erhält einen Namen
@@ -371,6 +374,27 @@ public class TodoItemStack implements Serializable, Comparable<TodoItemStack> {
 		
 		return (int)(dif/div);
 		
+		
+	}
+
+
+	
+	/**
+	 * Liefere für ein gegebenes TodoItem den Vorgänger
+	 * @param callingTodoItem
+	 * @return
+	 */
+	public TodoItem getPreviousTodoItem(TodoItem callingTodoItem) {
+		
+		int ancestorIndex = todoHistory.indexOf(callingTodoItem)-1;
+		
+		if(ancestorIndex >= 0) {
+		
+			return todoHistory.get(ancestorIndex);
+			
+		} else {
+			return null;
+		}
 		
 	}
 	

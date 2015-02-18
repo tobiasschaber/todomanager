@@ -3,8 +3,8 @@ Release 2.0   ( Content [ ] | BugFix [ ] | Gui [ ] | Test[ ] Struct [ ] ) >>1303
 Finalisierung und Test) |  
 ----------------------------------------------------------------------------------------------------------------------------
   [Content]	Das aktuelle Tab kann nun durch Drücken von Strg+W geschlossen werden
-
-
+  [Struct]  Das "lazy saving" ist für die TodoItem Beschreibung eingeführt worden
+  [Struct]  Das "lazy saving" ist für den TodoItem Status einegeführt worden
 
 
 

@@ -179,9 +179,18 @@ public final class TodoProjectToXmlConverter {
 								
 									final Element el3 = (Element) nd3;
 									
-									final String status = el3.getAttribute("status");
-	
-									final String desc = el3.getElementsByTagName("description").item(0).getTextContent();
+									String status = null;
+
+									if(el3.getAttribute("status") != null && !el3.getAttribute("status").equals("")) {
+										status = el3.getAttribute("status");
+									}
+									
+									String desc = null;
+									
+									if(el3.getElementsByTagName("description").item(0) != null) {
+										desc = el3.getElementsByTagName("description").item(0).getTextContent();
+									}
+									
 									final String text = el3.getElementsByTagName("text").item(0).getTextContent();
 	
 									
@@ -279,10 +288,24 @@ public final class TodoProjectToXmlConverter {
 							String modDate = "";
 							if(ti.getModificationDate() != null)	modDate = ""+ti.getModificationDate().getTime();
 					
-													
-							xmlString += "<todoItem status=\"" + escapeXmlString(ti.getStatus()) + "\" modificationDate=\"" + escapeXmlString(modDate) + "\">\n";
+							String statusPart = "";
 							
-							xmlString += "<description>" + escapeXmlString(ti.getDescription()) + "</description>\n";
+							if(tis.getPreviousTodoItem(ti) == null ||
+							   !tis.getPreviousTodoItem(ti).getStatus().equals(ti.getStatus())) {
+								statusPart = "status=\"" + escapeXmlString(ti.getStatus()) + "\"";
+							}
+							
+							
+							
+							xmlString += "<todoItem " + statusPart + " modificationDate=\"" + escapeXmlString(modDate) + "\">\n";
+							
+							
+							/* Kein Vorgänger (Ist das erste Element der Reihe) oder Beschreibung hat sich geändert -> Ausgeben */
+							if(tis.getPreviousTodoItem(ti) == null || 
+							   !tis.getPreviousTodoItem(ti).getDescription().equals(ti.getDescription())) {
+								
+									xmlString += "<description>" + escapeXmlString(ti.getDescription()) + "</description>\n";
+								}
 							
 							xmlString += "<text>" + escapeXmlString(ti.getText()) + "</text>\n";
 							

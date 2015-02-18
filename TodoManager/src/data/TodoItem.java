@@ -67,12 +67,28 @@ public class TodoItem implements Serializable {
 	
 	
 	public String getDescription() {
+		
+		/* wenn null, hole wert von vorherigem todoitem */
+		if(description == null) {
+			return parent.getPreviousTodoItem(this).getDescription();
+		}
+		
 		return description;
 	}
 	
 	
 	
+	/**
+	 * Liefert den status des TodoItems. Ist dieser nicht gesetzt, wird der Status des vorangegangenen
+	 * TodoItems erfragt.
+	 * @return
+	 */
 	public String getStatus() {
+
+		/* wenn null, hole wert von vorherigem todoitem */
+		if(status == null) {
+			return parent.getPreviousTodoItem(this).getStatus();
+		}
 		return status;
 	}
 
