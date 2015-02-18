@@ -1,4 +1,12 @@
 
+Release 2.0   ( Content [ ] | BugFix [ ] | Gui [ ] | Test[ ] Struct [ ] ) >>13033 LOC<< | 2: >>12764 LOC<<
+Finalisierung und Test) |  
+----------------------------------------------------------------------------------------------------------------------------
+  [Content]	Das aktuelle Tab kann nun durch Drücken von Strg+W geschlossen werden
+
+
+
+
 
 Release 1.7   ( Content [ ] | BugFix [ ] | Gui [ ] | Test[ ] Struct [X] ) >>13033 LOC<< | 2: >>12764 LOC<<
 Finalisierung und Test) |  

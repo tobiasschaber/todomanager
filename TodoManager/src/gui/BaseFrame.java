@@ -261,6 +261,22 @@ public class BaseFrame extends JFrame implements ActionListener, Observer {
 	        }
 	    }, KeyStroke.getKeyStroke(KeyEvent.VK_F,  KeyEvent.CTRL_DOWN_MASK, true), JComponent.WHEN_IN_FOCUSED_WINDOW);
 	    
+
+	    // Listener für STRG+W für aktuelles Tab schliessen
+	    root.registerKeyboardAction(new ActionListener() 
+	    {
+	        @Override
+	        public void actionPerformed(ActionEvent event) 
+	        {
+	        	
+	        	/* Tab nur schliessen wenn nicht das Haupt-Panel selektiert ist */
+	        	if(tabbedPane.getSelectedIndex() > 0) {
+	        		tabbedPane.remove(tabbedPane.getSelectedIndex());
+	        	}
+	        	
+	        }
+	    }, KeyStroke.getKeyStroke(KeyEvent.VK_W,  KeyEvent.CTRL_DOWN_MASK, true), JComponent.WHEN_IN_FOCUSED_WINDOW);
+	    
 	    
 	   
 	    return root;
