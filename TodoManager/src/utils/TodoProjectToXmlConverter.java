@@ -180,20 +180,22 @@ public final class TodoProjectToXmlConverter {
 									final Element el3 = (Element) nd3;
 									
 									String status = null;
+									String desc = null;
+									String text = null;
 
 									if(el3.getAttribute("status") != null && !el3.getAttribute("status").equals("")) {
 										status = el3.getAttribute("status");
 									}
 									
-									String desc = null;
 									
 									if(el3.getElementsByTagName("description").item(0) != null) {
 										desc = el3.getElementsByTagName("description").item(0).getTextContent();
 									}
 									
-									final String text = el3.getElementsByTagName("text").item(0).getTextContent();
-	
-									
+									if(el3.getElementsByTagName("text").item(0) != null) {
+										text = el3.getElementsByTagName("text").item(0).getTextContent();
+									}
+																	
 									
 									final Date dmod = new Date(Long.parseLong(el3.getAttribute("modificationDate"))); 
 							
@@ -248,12 +250,12 @@ public final class TodoProjectToXmlConverter {
 					String planStartDate = "";
 					String planEndDate = "";
 					String category = "";
-					if(tis.getReminderDate() != null)	reminderDate 	= ""+tis.getReminderDate().getTime();
-					if(tis.getPlanStart() != null)		planStartDate 	= ""+tis.getPlanStart().getTime();
-					if(tis.getPlanEnd() != null)		planEndDate 	= ""+tis.getPlanEnd().getTime();
+					if(tis.getReminderDate() != null)	reminderDate 	= " reminderDate=\""+tis.getReminderDate().getTime()+"\"";
+					if(tis.getPlanStart() != null)		planStartDate 	= " planStart=\""+tis.getPlanStart().getTime()+"\"";
+					if(tis.getPlanEnd() != null)		planEndDate 	= " planEnd=\""+tis.getPlanEnd().getTime()+"\"";
 					if(tis.getCategory() != null)		category		= tis.getCategory();
 					
-					xmlString += "<todoItemStack name=\"" + escapeXmlString(tis.getName()) + "\" todoId=\"" + tis.getTodoId() + "\" reminderDate=\"" + reminderDate + "\" reminderIsActive=\"" + tis.getReminderActivationStatus() + "\" priority=\"" + tis.getPriority() + "\" planStart=\"" + planStartDate + "\" planEnd=\"" + planEndDate + "\" category=\"" + category + "\">\n";
+					xmlString += "<todoItemStack name=\"" + escapeXmlString(tis.getName()) + "\" todoId=\"" + tis.getTodoId() + "\" " + reminderDate + " reminderIsActive=\"" + tis.getReminderActivationStatus() + "\" priority=\"" + tis.getPriority() + "\"" + planStartDate + planEndDate + " category=\"" + category + "\">\n";
 					
 					
 					xmlString += "<attachments>\n";
@@ -307,7 +309,11 @@ public final class TodoProjectToXmlConverter {
 									xmlString += "<description>" + escapeXmlString(ti.getDescription()) + "</description>\n";
 								}
 							
-							xmlString += "<text>" + escapeXmlString(ti.getText()) + "</text>\n";
+							
+							if(tis.getPreviousTodoItem(ti) == null ||
+							   !tis.getPreviousTodoItem(ti).getText().equals(ti.getText())) {
+									xmlString += "<text>" + escapeXmlString(ti.getText()) + "</text>\n";
+							}
 							
 							xmlString += "</todoItem>\n";
 							

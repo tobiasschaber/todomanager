@@ -95,6 +95,11 @@ public class TodoItem implements Serializable {
 	
 	
 	public String getText() {
+		
+		/* wenn null, hole wert von vorherigem todoitem */
+		if(text == null) {
+			return parent.getPreviousTodoItem(this).getText();
+		}
 		return text;
 	}
 

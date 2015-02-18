@@ -3,9 +3,12 @@ Release 2.0   ( Content [ ] | BugFix [ ] | Gui [ ] | Test[ ] Struct [ ] ) >>1303
 Finalisierung und Test) |  
 ----------------------------------------------------------------------------------------------------------------------------
   [Content]	Das aktuelle Tab kann nun durch Drücken von Strg+W geschlossen werden
-  [Struct]  Das "lazy saving" ist für die TodoItem Beschreibung eingeführt worden
-  [Struct]  Das "lazy saving" ist für den TodoItem Status einegeführt worden
+  [Struct]  Das "lazy saving" ist für die TodoItem Beschreibung eingeführt worden 
+  [Struct]  Das "lazy saving" ist für den TodoItem Status eingeführt worden
+  [Struct]  Das "lazy saving" ist für den TodoItem Text eingeführt worden
+  [Struct]  Nicht gesetzte Datums werden nun nicht mehr als leere Strings im XML mitgespeichert
 
+-> Automatische Konvertierung beim lazy saving!
 
 
 Release 1.7   ( Content [ ] | BugFix [ ] | Gui [ ] | Test[ ] Struct [X] ) >>13033 LOC<< | 2: >>12764 LOC<<
