@@ -387,7 +387,7 @@ public class BaseController {
 	public void renameTodoList(TodoList toBeRenamed) {
 
 
-		String newName = (String) JOptionPane.showInputDialog(null, "message", "title", JOptionPane.PLAIN_MESSAGE, null, null, toBeRenamed.getListName());
+		String newName = (String) JOptionPane.showInputDialog(null, "Der neue Name der Liste lautet:", "Todo-Liste umbenennen", JOptionPane.PLAIN_MESSAGE, null, null, toBeRenamed.getListName());
 		
 		if(newName != null && !newName.equals("")) {
 			toBeRenamed.setListName(newName);

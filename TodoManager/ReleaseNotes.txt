@@ -1,10 +1,12 @@
 
-Release 2.0   ( Content [X] | BugFix [ ] | Gui [ ] | Test[ ] Struct [X] )
+Release 2.0   ( Content [ ] | BugFix [ ] | Gui [X] | Test[ ] Struct [X] )
 ----------------------------------------------------------------------------------------------------------------------------
-  [Content]	Das aktuelle Tab kann nun durch Drücken von Strg+W geschlossen werden
+  [Gui]		Das aktuelle Tab kann nun durch Drücken von Strg+W geschlossen werden
   [Struct]	"Lazy Economic Saving" wurde implementiert. Dies reduziert die XML-File-Größe, da nicht geänderte Werte nicht erneut gespeichert werden
   [Struct]  "Lazy Economic Saving" führt automatisch eine Konvertierung des alten XML-Formats durch
   [Gui]		Im Todo Detail Editor passt sich nun die Breite der Textfelder, nicht mehr der Anhänge ans Fenster an
+  [Gui]		Der Dialog zum Umbenennen einer Liste hat nun einen richtigen Titel und einen richtigen Text
+  
   
 
 
