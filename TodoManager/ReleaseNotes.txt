@@ -1,14 +1,11 @@
 
-Release 2.0   ( Content [ ] | BugFix [ ] | Gui [ ] | Test[ ] Struct [ ] ) >>13033 LOC<< | 2: >>12764 LOC<<
-Finalisierung und Test) |  
+Release 2.0   ( Content [X] | BugFix [ ] | Gui [ ] | Test[ ] Struct [X] )
 ----------------------------------------------------------------------------------------------------------------------------
   [Content]	Das aktuelle Tab kann nun durch Drücken von Strg+W geschlossen werden
-  [Struct]  Das "lazy saving" ist für die TodoItem Beschreibung eingeführt worden 
-  [Struct]  Das "lazy saving" ist für den TodoItem Status eingeführt worden
-  [Struct]  Das "lazy saving" ist für den TodoItem Text eingeführt worden
-  [Struct]  Nicht gesetzte Datums werden nun nicht mehr als leere Strings im XML mitgespeichert
-
--> Automatische Konvertierung beim lazy saving!
+  [Struct]	"Lazy Economic Saving" wurde implementiert. Dies reduziert die XML-File-Größe, da nicht geänderte Werte nicht erneut gespeichert werden
+  [Struct]  "Lazy Economic Saving" führt automatisch eine Konvertierung des alten XML-Formats durch
+  [Gui]		Im Todo Detail Editor passt sich nun die Breite der Textfelder, nicht mehr der Anhänge ans Fenster an
+  
 
 
 Release 1.7   ( Content [ ] | BugFix [ ] | Gui [ ] | Test[ ] Struct [X] ) >>13033 LOC<< | 2: >>12764 LOC<<

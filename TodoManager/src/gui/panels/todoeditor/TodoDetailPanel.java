@@ -3,18 +3,47 @@ package gui.panels.todoeditor;
 import gui.dialogs.SelectAttachmentStoreModeDialog;
 import gui.menus.AttachmentContextMenu;
 import gui.models.AttachmentListModel;
-import gui.renderer.*;
+import gui.renderer.AttachmentListRenderer;
+import gui.renderer.ComboBoxCategoryRenderer;
+import gui.renderer.ComboBoxStatusRenderer;
+import gui.renderer.TodoHistoryRenderer;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.dnd.*;
-import java.awt.event.*;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimeZone;
 
-import javax.swing.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JSlider;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -27,7 +56,9 @@ import com.toedter.calendar.JDateChooser;
 
 import controller.ConfigurationHandlerImpl;
 import controller.ImageController;
-import data.*;
+import data.Attachment;
+import data.TodoItem;
+import data.TodoItemStack;
 
 /**
  * Das Panel, welches die Detail-Informationen zu einem TodoItemStack anzeigt.
@@ -40,6 +71,8 @@ public class TodoDetailPanel extends JPanel implements ListSelectionListener, Ac
 	
 	private final AttachmentContextMenu		attachmentContextMenu = new AttachmentContextMenu();
 	
+	private final JPanel	  panelRight				= new JPanel();
+
 	private final JScrollPane scrollpaneText 			= new JScrollPane();
     private final JScrollPane scrollPaneTodoHistoryList	= new JScrollPane();
     private final JScrollPane scrollpaneAttachmentList  = new JScrollPane();
@@ -157,147 +190,159 @@ public class TodoDetailPanel extends JPanel implements ListSelectionListener, Ac
 	private void initLayout() {
 
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labOpenTextEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpaneText, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFieldDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labPriority)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sliderPriority, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labTodoItem)
-                    .addComponent(scrollPaneTodoHistoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labReminder, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labTimePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labUhrzeit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkBoxReminderActive, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(buttonSave)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(labDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtFieldDate))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(labTimePlanEnd, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
-                                .addComponent(labTimePlanStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtFieldDateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtFieldDateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollpaneAttachmentList, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labAttachments, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labOpenAttachmentDir, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jSeparator1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labTodoItem)
-                            .addComponent(labReminder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labAttachments)
-                            .addComponent(labOpenAttachmentDir))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(scrollPaneTodoHistoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(labDescription)
-                                            .addComponent(txtFieldDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(labDatum)
-                                            .addComponent(txtFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(labUhrzeit)
-                                            .addComponent(txtFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(chkBoxReminderActive)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(labTimePlan)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(labTimePlanStart)
-                                            .addComponent(txtFieldDateStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(labStatus)
-                                                .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(labPriority))
-                                            .addComponent(sliderPriority, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(scrollpaneText)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labText)
-                                                .addGap(68, 68, 68)
-                                                .addComponent(labOpenTextEditor)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(11, 11, 11)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txtFieldDateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(labTimePlanEnd))
-                                        .addGap(22, 22, 22)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(labCategory)
-                                            .addComponent(comboBoxCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(buttonSave))))
-                            .addComponent(scrollpaneAttachmentList))))
-                .addContainerGap())
-        );
+	       javax.swing.GroupLayout panelRightLayout = new javax.swing.GroupLayout(panelRight);
+	        panelRight.setLayout(panelRightLayout);
+	        panelRightLayout.setHorizontalGroup(
+	            panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(panelRightLayout.createSequentialGroup()
+	                .addContainerGap()
+	                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addComponent(labReminder, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addComponent(labTimePlan, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                    .addGroup(panelRightLayout.createSequentialGroup()
+	                        .addComponent(labUhrzeit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addComponent(chkBoxReminderActive, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(txtFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+	                    .addComponent(buttonSave)
+	                    .addGroup(panelRightLayout.createSequentialGroup()
+	                        .addComponent(labCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addComponent(comboBoxCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                    .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+	                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRightLayout.createSequentialGroup()
+	                            .addComponent(labDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                            .addComponent(txtFieldDate))
+	                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRightLayout.createSequentialGroup()
+	                            .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+	                                .addComponent(labTimePlanEnd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                                .addComponent(labTimePlanStart, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                            .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                                .addGroup(panelRightLayout.createSequentialGroup()
+	                                    .addGap(18, 18, 18)
+	                                    .addComponent(txtFieldDateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                                .addGroup(panelRightLayout.createSequentialGroup()
+	                                    .addGap(18, 18, 18)
+	                                    .addComponent(txtFieldDateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+	                .addGap(18, 18, 18)
+	                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addComponent(scrollpaneAttachmentList, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+	                    .addGroup(panelRightLayout.createSequentialGroup()
+	                        .addComponent(labAttachments, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addComponent(labOpenAttachmentDir, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addGap(0, 0, Short.MAX_VALUE)))
+	                .addContainerGap())
+	        );
+	        panelRightLayout.setVerticalGroup(
+	            panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(panelRightLayout.createSequentialGroup()
+	                .addContainerGap()
+	                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+	                    .addGroup(panelRightLayout.createSequentialGroup()
+	                        .addGap(20, 20, 20)
+	                        .addComponent(jSeparator1))
+	                    .addGroup(panelRightLayout.createSequentialGroup()
+	                        .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                            .addComponent(labReminder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                            .addComponent(labAttachments)
+	                            .addComponent(labOpenAttachmentDir))
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                            .addGroup(panelRightLayout.createSequentialGroup()
+	                                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                                    .addComponent(labDatum)
+	                                    .addComponent(txtFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                                    .addComponent(labUhrzeit)
+	                                    .addComponent(txtFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                                .addComponent(chkBoxReminderActive)
+	                                .addGap(18, 18, 18)
+	                                .addComponent(labTimePlan)
+	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                                    .addComponent(labTimePlanStart)
+	                                    .addComponent(txtFieldDateStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                                .addGap(11, 11, 11)
+	                                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                                    .addComponent(txtFieldDateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                                    .addComponent(labTimePlanEnd))
+	                                .addGap(22, 22, 22)
+	                                .addGroup(panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                                    .addComponent(labCategory)
+	                                    .addComponent(comboBoxCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	                                .addComponent(buttonSave))
+	                            .addComponent(scrollpaneAttachmentList))))
+	                .addContainerGap())
+	        );
+
+	        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+	        this.setLayout(layout);
+	        layout.setHorizontalGroup(
+	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(layout.createSequentialGroup()
+	                .addContainerGap()
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addGroup(layout.createSequentialGroup()
+	                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+	                            .addComponent(labText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                            .addComponent(labOpenTextEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addComponent(scrollpaneText))
+	                    .addGroup(layout.createSequentialGroup()
+	                        .addComponent(labDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addComponent(txtFieldDescription))
+	                    .addGroup(layout.createSequentialGroup()
+	                        .addComponent(labStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                        .addComponent(labPriority)
+	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                        .addComponent(sliderPriority, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                    .addComponent(labTodoItem)
+	                    .addComponent(scrollPaneTodoHistoryList))
+	                .addGap(8, 8, 8)
+	                .addComponent(panelRight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addContainerGap())
+	        );
+	        layout.setVerticalGroup(
+	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+	                .addContainerGap()
+	                .addComponent(labTodoItem)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addComponent(scrollPaneTodoHistoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                    .addComponent(labDescription)
+	                    .addComponent(txtFieldDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                .addGap(17, 17, 17)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+	                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+	                        .addComponent(labStatus)
+	                        .addComponent(comboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                        .addComponent(labPriority))
+	                    .addComponent(sliderPriority, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+	                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	                    .addComponent(scrollpaneText)
+	                    .addGroup(layout.createSequentialGroup()
+	                        .addComponent(labText)
+	                        .addGap(68, 68, 68)
+	                        .addComponent(labOpenTextEditor)
+	                        .addGap(0, 0, Short.MAX_VALUE)))
+	                .addContainerGap())
+	            .addComponent(panelRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	        );
 	}
 	
 	

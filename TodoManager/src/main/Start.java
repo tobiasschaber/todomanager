@@ -30,10 +30,6 @@ public class Start {
 	//TODO: Speichern-Button in der Detail-Ansicht ausgrauen wenn keine Änderungen existieren
 	
 	//TODO: Breite einer Einheit im Zeitstrahl (Tag/Woche) konfigurierbar machen und dann über GUI einstellbar
-
-	//TODO: Update-Saving implementieren, so dass in TODOs nur immer der geänderte Wert gespeichert wird.
-	//		Kann sogar so weit gehen, dass die im Speicher gehaltenen Objekte nicht existierende Werte immer
-	// 		vom vorherigen Element anfragen :)
 		
 	//TODO: Start-Ansicht (Tages/Wochen-Ansicht) des Time-Panels konfigurierbar machen via gui
 	//TODO: Konfigurierbar machen in GUI: Beim Starten des Programms High-Prio-Liste anzeigen
@@ -44,7 +40,7 @@ public class Start {
 	//TODO: Idee: Rechte Maustaste auf das TimePanel auf einen Tag -> "Als Abwesend markieren"..sowas wie eine zusätzliche Terminliste einbauen?
 	
 	//TODO: Vielleicht lässt sich das TimePanel beim wieder kleiner machen / neu laden auch im speicher zu verkleinern
-	public static final String version 		= "1.74";
+	public static final String version 		= "2.0 in development";
 	public static final String releaseDate	= "NYR"; 
 	
 	
